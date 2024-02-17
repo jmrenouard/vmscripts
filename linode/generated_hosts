@@ -1,0 +1,14 @@
+## START_LINODE_HOSTS
+139.162.234.110	http1	http1.public		http1.ext	http1.external
+192.168.199.29 		http1.private	http1.int	http1.internal
+85.159.211.184	http2	http2.public		http2.ext	http2.external
+192.168.154.46 		http2.private	http2.int	http2.internal
+139.177.176.127	mysrv1	mysrv1.public		mysrv1.ext	mysrv1.external
+192.168.144.117 		mysrv1.private	mysrv1.int	mysrv1.internal
+139.162.226.249	elk_elksrv	elk_elksrv.public		elk_elksrv.ext	elk_elksrv.external
+192.168.194.183 		elk_elksrv.private	elk_elksrv.int	elk_elksrv.internal
+88.80.191.147	elk_pgsrv1	elk_pgsrv1.public		elk_pgsrv1.ext	elk_pgsrv1.external
+192.168.179.12 		elk_pgsrv1.private	elk_pgsrv1.int	elk_pgsrv1.internal
+139.162.208.30	elk_pgsrv2	elk_pgsrv2.public		elk_pgsrv2.ext	elk_pgsrv2.external
+192.168.150.147 		elk_pgsrv2.private	elk_pgsrv2.int	elk_pgsrv2.internal
+## END_LINODE_HOSTS

@@ -1,0 +1,11 @@
+[mysql]
+node1 ansible_host=172.20.1.101
+node2 ansible_host=172.20.1.102
+node3 ansible_host=172.20.1.103
+[loadbalancer]
+loadb1 ansible_host=172.20.1.104
+
+
+[pi]
+raspberry1 ansible_host='192.168.68.53' ansible_user='pi'
+raspberry2 ansible_host='192.168.68.51' ansible_user='pi'

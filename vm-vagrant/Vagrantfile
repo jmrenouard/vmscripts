@@ -1,0 +1,161 @@
+### CONFIGURATED BY Vagrantfile.j2 and j2cli
+unless Vagrant.has_plugin?("vagrant-vbguest")
+  puts 'Installing vagrant-vbguest Plugin...'
+  #system('vagrant plugin install vagrant-vbguest')
+  system('vagrant.exe plugin install vagrant-vbguest')
+end
+
+unless Vagrant.has_plugin?("vagrant-hostmanager")
+  puts 'Installing vagrant-hostmanager Plugin...'
+  #system('vagrant plugin install vagrant-hostmanager')
+  system('vagrant.exe plugin install vagrant-hostmanager')
+end
+
+Vagrant.configure("2") do |config|
+    config.hostmanager.enabled = true
+    config.hostmanager.manage_host = true
+    config.hostmanager.manage_guest = true
+    config.vm.synced_folder '.', '/vagrant', disabled: true
+    config.vbguest.auto_update = false
+    config.vm.boot_timeout = 600
+
+    ### CONFIG node1 VM GENERATED
+    config.vm.define "node1" do |node1|
+      node1.vm.box = "generic/ubuntu2204"
+      node1.vm.hostname = 'node1.vm'
+      node1.hostmanager.enabled = true
+      node1.vm.network "private_network", type: 'static', adapter: 2, ip: "172.20.1.101", use_dhcp_assigned_default_route: true
+      node1.vm.network "private_network", type: 'static', adapter: 3, ip: "172.21.1.101", use_dhcp_assigned_default_route: true
+      node1.vm.network "public_network", type: 'dhcp', adapter: 4, bridge: "Surface Ethernet Adapter", use_dhcp_assigned_default_route: true
+      node1.hostmanager.manage_host = false
+      node1.hostmanager.manage_guest = true
+      node1.hostmanager.ignore_private_ip = false
+      node1.hostmanager.include_offline = true
+      node1.hostmanager.aliases = %w(node1.localdomain node1.local node1.vm)
+
+      node1.vm.provider "virtualbox" do |vb|
+         vb.name="node1"
+         vb.gui = false
+         vb.memory = 1024
+         vb.cpus = 2
+         vb.customize [ "modifyvm", :id, "--ioapic", "on" ]
+         vb.customize [ "modifyvm", :id, "--groups", "/VagrantVms/MySQL/mysql" ]
+         vb.customize ["modifyvm", :id, "--nicpromisc2", "allow-all"]
+         vb.customize ["modifyvm", :id, "--nicpromisc3", "allow-all"]
+         vb.customize ["modifyvm", :id, "--nicpromisc4", "allow-all"]
+      end
+      
+      node1.vm.provision :hostmanager
+      node1.vm.provision "shell" do |s|
+        ssh_pub_key = File.readlines("./id_rsa_vm.pub").first.strip
+        ssh_priv_key = File.read("./id_rsa_vm")
+        s.inline = <<-SHELL
+            mkdir -p /root/.ssh
+            echo "#{ssh_pub_key}"  | tee -a /home/vagrant/.ssh/authorized_keys
+            echo "#{ssh_pub_key}"  | tee -a /root/.ssh/authorized_keys
+            echo "#{ssh_priv_key}" | tee /home/vagrant/.ssh/id_rsa
+            echo "#{ssh_priv_key}" | tee /root/.ssh/id_rsa
+            chmod 600 /root/.ssh/id_rsa /home/vagrant/.ssh/id_rsa
+            chown vagrant. /home/vagrant/.ssh/id_rsa
+        SHELL
+      end
+      
+    end
+    
+
+    ### CONFIG node2 VM GENERATED
+    config.vm.define "node2" do |node2|
+      node2.vm.box = "generic/ubuntu2204"
+      node2.vm.hostname = 'node2.vm'
+      node2.hostmanager.enabled = true
+      node2.vm.network "private_network", type: 'static', adapter: 2, ip: "172.20.1.102", use_dhcp_assigned_default_route: true
+      node2.vm.network "private_network", type: 'static', adapter: 3, ip: "172.21.1.102", use_dhcp_assigned_default_route: true
+      node2.vm.network "public_network", type: 'dhcp', adapter: 4, bridge: "Surface Ethernet Adapter", use_dhcp_assigned_default_route: true
+      node2.hostmanager.manage_host = false
+      node2.hostmanager.manage_guest = true
+      node2.hostmanager.ignore_private_ip = false
+      node2.hostmanager.include_offline = true
+      node2.hostmanager.aliases = %w(node2.localdomain node2.local node2.vm)
+
+      node2.vm.provider "virtualbox" do |vb|
+         vb.name="node2"
+         vb.gui = false
+         vb.memory = 1024
+         vb.cpus = 2
+         vb.customize [ "modifyvm", :id, "--ioapic", "on" ]
+         vb.customize [ "modifyvm", :id, "--groups", "/VagrantVms/MySQL/mysql" ]
+         vb.customize ["modifyvm", :id, "--nicpromisc2", "allow-all"]
+         vb.customize ["modifyvm", :id, "--nicpromisc3", "allow-all"]
+         vb.customize ["modifyvm", :id, "--nicpromisc4", "allow-all"]
+      end
+      
+      node2.vm.provision :hostmanager
+      node2.vm.provision "shell" do |s|
+        ssh_pub_key = File.readlines("./id_rsa_vm.pub").first.strip
+        ssh_priv_key = File.read("./id_rsa_vm")
+        s.inline = <<-SHELL
+            mkdir -p /root/.ssh
+            echo "#{ssh_pub_key}"  | tee -a /home/vagrant/.ssh/authorized_keys
+            echo "#{ssh_pub_key}"  | tee -a /root/.ssh/authorized_keys
+            echo "#{ssh_priv_key}" | tee /home/vagrant/.ssh/id_rsa
+            echo "#{ssh_priv_key}" | tee /root/.ssh/id_rsa
+            chmod 600 /root/.ssh/id_rsa /home/vagrant/.ssh/id_rsa
+            chown vagrant. /home/vagrant/.ssh/id_rsa
+        SHELL
+      end
+      
+    end
+    
+
+    ### CONFIG node3 VM GENERATED
+    config.vm.define "node3" do |node3|
+      node3.vm.box = "generic/ubuntu2204"
+      node3.vm.hostname = 'node3.vm'
+      node3.hostmanager.enabled = true
+      node3.vm.network "private_network", type: 'static', adapter: 2, ip: "172.20.1.103", use_dhcp_assigned_default_route: true
+      node3.vm.network "private_network", type: 'static', adapter: 3, ip: "172.21.1.103", use_dhcp_assigned_default_route: true
+      node3.vm.network "public_network", type: 'dhcp', adapter: 4, bridge: "Surface Ethernet Adapter", use_dhcp_assigned_default_route: true
+      node3.hostmanager.manage_host = false
+      node3.hostmanager.manage_guest = true
+      node3.hostmanager.ignore_private_ip = false
+      node3.hostmanager.include_offline = true
+      node3.hostmanager.aliases = %w(node3.localdomain node3.local node3.vm)
+
+      node3.vm.provider "virtualbox" do |vb|
+         vb.name="node3"
+         vb.gui = false
+         vb.memory = 1024
+         vb.cpus = 2
+         vb.customize [ "modifyvm", :id, "--ioapic", "on" ]
+         vb.customize [ "modifyvm", :id, "--groups", "/VagrantVms/MySQL/mysql" ]
+         vb.customize ["modifyvm", :id, "--nicpromisc2", "allow-all"]
+         vb.customize ["modifyvm", :id, "--nicpromisc3", "allow-all"]
+         vb.customize ["modifyvm", :id, "--nicpromisc4", "allow-all"]
+      end
+      
+      node3.vm.provision :hostmanager
+      node3.vm.provision "shell" do |s|
+        ssh_pub_key = File.readlines("./id_rsa_vm.pub").first.strip
+        ssh_priv_key = File.read("./id_rsa_vm")
+        s.inline = <<-SHELL
+            mkdir -p /root/.ssh
+            echo "#{ssh_pub_key}"  | tee -a /home/vagrant/.ssh/authorized_keys
+            echo "#{ssh_pub_key}"  | tee -a /root/.ssh/authorized_keys
+            echo "#{ssh_priv_key}" | tee /home/vagrant/.ssh/id_rsa
+            echo "#{ssh_priv_key}" | tee /root/.ssh/id_rsa
+            chmod 600 /root/.ssh/id_rsa /home/vagrant/.ssh/id_rsa
+            chown vagrant. /home/vagrant/.ssh/id_rsa
+        SHELL
+      end
+      
+    end
+    
+
+
+
+
+
+
+
+
+end

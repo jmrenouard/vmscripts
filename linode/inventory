@@ -1,0 +1,27 @@
+[application]
+elk_elksrv ansible_host=139.162.226.249
+
+[database]
+mysrv1 ansible_host=139.177.176.127
+elk_pgsrv1 ansible_host=88.80.191.147
+elk_pgsrv2 ansible_host=139.162.208.30
+
+[linux]
+elk_elksrv ansible_host=139.162.226.249
+elk_pgsrv1 ansible_host=88.80.191.147
+elk_pgsrv2 ansible_host=139.162.208.30
+
+[mariadb]
+mysrv1 ansible_host=139.177.176.127
+
+[postgres]
+elk_pgsrv1 ansible_host=88.80.191.147
+elk_pgsrv2 ansible_host=139.162.208.30
+
+[postgresql]
+elk_pgsrv1 ansible_host=88.80.191.147
+elk_pgsrv2 ansible_host=139.162.208.30
+
+[webapps]
+elk_elksrv ansible_host=139.162.226.249
+
