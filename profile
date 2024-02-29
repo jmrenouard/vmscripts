@@ -2,8 +2,9 @@
 
 export VMS_DIR="$HOME/GIT_REPOS/vmscripts/vms"
 export SCRIPT_DIR="$HOME/GIT_REPOS/dbscripts"
+export _DIR="$HOME/GIT_REPOS/dbscripts"
 
-[ -z "$DEFAULT_PRIVATE_KEY" ] && export DEFAULT_PRIVATE_KEY="$VMS_DIR/id_rsa"
+[ -z "$DEFAULT_PRIVATE_KEY" ] && export DEFAULT_PRIVATE_KEY="$VMS_DIR/vms/id_rsa"
 
 export proxy_vms="proxy1,proxy2"
 export db_vms="dbsrv1,dbsrv2,dbsrv3"
@@ -18,7 +19,6 @@ for module in is utils git network jupyter;do
     [ -f "${SCRIPT_DIR}/${module}.sh" ] && source ${SCRIPT_DIR}/${module}.sh
 done
 
-export _DIR="${SCRIPT_DIR}"
 if [ -d "/usr/local/go/bin" ]; then
 export PATH=$PATH:/usr/local/go/bin
 fi
