@@ -1,1 +1,1 @@
-{"virtualbox":{"/vagrant":{"guestpath":"/vagrant","hostpath":"C:/Users/jmren/Documents/dbscripts/vms","disabled":false,"__vagrantfile":true}}}
+{"virtualbox":{"/vagrant":{"guestpath":"/vagrant","hostpath":"/home/student/GIT_REPOS/vmscripts/vms","disabled":false,"__vagrantfile":true}}}

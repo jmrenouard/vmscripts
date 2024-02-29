@@ -1,1 +1,1 @@
-{"name":"bento/centos-8","version":"202104.19.0","provider":"virtualbox","directory":"boxes/bento-VAGRANTSLASH-centos-8/202104.19.0/virtualbox"}
+{"name":"ubuntu/jammy64","version":"20240227.0.0","provider":"virtualbox","directory":"boxes/ubuntu-VAGRANTSLASH-jammy64/20240227.0.0/virtualbox"}
