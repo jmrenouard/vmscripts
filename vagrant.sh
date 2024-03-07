@@ -74,7 +74,8 @@ vgenAlias()
 	local tkey=${1:-"$DEFAULT_PRIVATE_KEY"}
     for srv in $(alias |grep 'ssh_' |cut -d= -f1| awk '{print $2}'); do unalias $srv;done
     for srv in $(vgetLogicalNames); do
-		lip=$(vgetPrivateIp $srv)
+		#alias ssh_$srv="ssh $srv"
+        lip=$(vgetPrivateIp $srv)
 		alias ssh_$srv="ssh -i $tkey root@$lip"
 	done
     export DEFAULT_PRIVATE_KEY="$tkey"

@@ -85,8 +85,8 @@ init_vms()
 
 init_conf()
 {
-  sed -i '/source $HOME\/dbscripts\/profile/d' $HOME/.bashrc
-  echo '[ -f "$HOME/dbscripts/profile" ] && source $HOME/dbscripts/profile' >> $HOME/.bashrc
+  sed -i '/scripts\/profile/d' $HOME/.bashrc
+  echo '[ -f "$HOME/GIT_REPOS/vmscripts/profile" ] && source $HOME/GIT_REPOS/vmscripts/profile' >> $HOME/.bashrc
   source $HOME/.bashrc
 }
 
