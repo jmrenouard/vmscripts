@@ -64,13 +64,13 @@ log_mariadb106:
 list_containers:
 	docker ps -a | grep -E '(mysql|mariadb)'
 
-cleanup_mysql: stop_mysql
+cleanup_mysql:
 	docker volume rm -f mysql
 
-cleanup_mariadb: stop_mariadb
+cleanup_mariadb:
 	docker volume rm -f mariadb
 
-cleanup_mariadb106: stop_mariadb106
+cleanup_mariadb106:
 		docker volume rm -f mariadb106
 
 cleanup_all: cleanup_mysql cleanup_mariadb cleanup_mariadb106
