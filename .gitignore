@@ -1,3 +1,6 @@
 google-chrome*
 vms/.vagrant/* 
 vms/.vagrant/**
+docker/secrets/**
+test_db
+test_db/**
