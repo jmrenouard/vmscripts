@@ -3,6 +3,7 @@ SECRET_PASSWORD="Admin2024_"
 create_secrets:
 	[ -d "secrets" ] ||mkdir secrets
 	echo "$(SECRET_PASSWORD)" > secrets/mysql-root-password
+	echo "[client]\nhost=127.0.0.1\nuser=root\npassword=$(SECRET_PASSWORD)" > ${HOME}/.my.cnf
 
 enable_pf:
 	sudo sysctl -w net.ipv4.ip_forward=1
