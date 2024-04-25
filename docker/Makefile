@@ -50,12 +50,13 @@ start_mariadb106: enable_pf
 	 mariadb:10.6
 
 start_cassandra:
+	docker network create cassandra
 	docker run --name cassandra \
 	--network cassandra \
 	-d \
 	-v cassandra:/var/lib/cassandra \
-	-p 9042:9042 \
-	-p 7199:7199 \
+	-p 19042:9042 \
+	-p 17199:7199 \
 	-e CASSANDRA_SEEDS='' \
 	-e CASSANDRA_NUM_TOKENS=8 \
 	-e CASSANDRA_DC=DC1 \
@@ -64,11 +65,12 @@ start_cassandra:
 	cassandra:latest
 
 start_cassandra311:
+	docker network create cassandra311
 	docker run --name cassandra311 \
 	--network cassandra311 \
 	-d \
 	-v cassandra311:/var/lib/cassandra \
-	-p 9142:9042 \
+	-p 9042:9042 \
 	-p 7299:7199 \
 	-e CASSANDRA_SEEDS='' \
 	-e CASSANDRA_NUM_TOKENS=8 \
@@ -107,10 +109,12 @@ stop_mariadb106:
 stop_cassandra:
 	docker stop cassandra
 	docker rm -f cassandra
+	docker network rm -f cassandra
 
 stop_cassandra311:
 	docker stop cassandra311
 	docker rm -f cassandra311
+	docker network rm -f cassandra311
 
 stop_postgres:
 	docker stop postgres
