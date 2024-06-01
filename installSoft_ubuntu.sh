@@ -115,4 +115,4 @@ sudo apt-get install helm
 [ "$1" = "" -o "$1" = "initconf" ] && init_conf
 [ "$1" = "" -o "$1" = "initjupy" ] && init_jupyter
 
-[ "$1" = "" -o "$1" = "inithube" ] && init_kubernetes
+[ "$1" = "" -o "$1" = "initkube" ] && init_kubernetes
