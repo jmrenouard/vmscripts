@@ -92,9 +92,11 @@ init_conf()
 
 init_python()
 {
-	sudo apt install python3-pip pandoc python-is-python3 ansible -y
-	sudo pip install notebook bash_kernel jupyter nbconvert j2cli ansible
+	sudo apt install python3-pip pandoc python-is-python3 ansible j2cli -y
+	sudo pip install notebook bash_kernel jupyter nbconvert  ansible
   #python3 -m bash_kernel.install
+  sudo apt install golang-go -y
+  sudo go get github.com/google/go-jsonnet/cmd/jsonnet
 }
 init_kubernetes()
 {
