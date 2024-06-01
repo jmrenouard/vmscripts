@@ -92,13 +92,13 @@ init_conf()
 
 init_python()
 {
-	sudo apt install python3-pip pandoc python-is-python3 ansible j2cli -y
-	sudo pip install notebook bash_kernel jupyter nbconvert  ansible
-  #python3 -m bash_kernel.install
+	sudo apt install python3-pip pandoc python-is-python3 ansible jq j2cli -y
+	sudo pip install notebook bash_kernel jupyter nbconvert json  
+  sudo python -m bash_kernel.install
   sudo apt install golang-go -y
-  sudo go install github.com/google/go-jsonnet/cmd/jsonnet@latest
+  GOBIN=/usr/local/bin/ sudo go install github.com/google/go-jsonnet/cmd/jsonnet@latest
   # Or other tools in the 'cmd' directory
-  sudo go install github.com/google/go-jsonnet/cmd/jsonnet-lint@latest
+  GOBIN=/usr/local/bin/ sudo go install github.com/google/go-jsonnet/cmd/jsonnet-lint@latest
 }
 init_kubernetes()
 {
