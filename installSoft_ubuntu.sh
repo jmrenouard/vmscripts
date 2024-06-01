@@ -90,10 +90,18 @@ init_python()
 	sudo apt install python3-pip pandoc python-is-python3 ansible jq j2cli -y
 	sudo pip install notebook bash_kernel jupyter nbconvert json  
   sudo python -m bash_kernel.install
+}
+init_golang()
+{
   sudo apt install golang-go -y
-  GOBIN=/usr/local/bin/ sudo go install github.com/google/go-jsonnet/cmd/jsonnet@latest
+  go install github.com/google/go-jsonnet/cmd/jsonnet@latest
   # Or other tools in the 'cmd' directory
-  GOBIN=/usr/local/bin/ sudo go install github.com/google/go-jsonnet/cmd/jsonnet-lint@latest
+  go install github.com/google/go-jsonnet/cmd/jsonnet-lint@latest
+  go install -a github.com/jsonnet-bundler/jsonnet-bundler/cmd/jb@latest
+  sudo cp $HOME/go/bin /usr/local/bin
+  sudo chmod +x /usr/local/bin
+  jb install github.com/grafana/grafonnet/gen/grafonnet-latest@main
+  
 }
 init_kubernetes()
 {
@@ -113,5 +121,5 @@ sudo apt-get install helm
 [ "$1" = "" -o "$1" = "initvms" ] && init_vms
 [ "$1" = "" -o "$1" = "initconf" ] && init_conf
 [ "$1" = "" -o "$1" = "initpy" ] && init_python
-
+[ "$1" = "" -o "$1" = "initgo" ] && init_golang
 [ "$1" = "" -o "$1" = "initkube" ] && init_kubernetes
