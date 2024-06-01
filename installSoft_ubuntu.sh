@@ -94,7 +94,7 @@ init_jupyter()
 {
 	sudo apt install python3-pip pandoc -y
 	sudo pip install notebook bash_kernel jupyter nbconvert
-  python3 -m bash_kernel.install
+  #python3 -m bash_kernel.install
 }
 init_kubernetes()
 {
