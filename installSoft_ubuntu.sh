@@ -96,7 +96,7 @@ init_jupyter()
 	sudo pip install notebook bash_kernel jupyter nbconvert
   python3 -m bash_kernel.install
 }
-install_kubernetes()
+init_kubernetes()
 {
 curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 \
 chmod +x minikube
