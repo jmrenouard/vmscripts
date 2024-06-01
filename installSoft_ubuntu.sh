@@ -96,7 +96,9 @@ init_python()
 	sudo pip install notebook bash_kernel jupyter nbconvert  ansible
   #python3 -m bash_kernel.install
   sudo apt install golang-go -y
-  sudo go get github.com/google/go-jsonnet/cmd/jsonnet
+  sudo go install github.com/google/go-jsonnet/cmd/jsonnet@latest
+  # Or other tools in the 'cmd' directory
+  sudo go install github.com/google/go-jsonnet/cmd/jsonnet-lint@latest
 }
 init_kubernetes()
 {
