@@ -98,8 +98,9 @@ init_golang()
   # Or other tools in the 'cmd' directory
   go install github.com/google/go-jsonnet/cmd/jsonnet-lint@latest
   go install -a github.com/jsonnet-bundler/jsonnet-bundler/cmd/jb@latest
-  sudo cp $HOME/go/bin /usr/local/bin
-  sudo chmod +x /usr/local/bin
+  sudo mkdir -p /usr/local/bin
+  sudo cp $HOME/go/bin/* /usr/local/bin
+  sudo chmod -R +x /usr/local/bin
   jb install github.com/grafana/grafonnet/gen/grafonnet-latest@main
   
 }
