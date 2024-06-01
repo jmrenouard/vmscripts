@@ -20,11 +20,6 @@ echo "deb [arch=amd64 signed-by=/usr/share/keyrings/sublimetext-keyring.gpg] htt
 sudo tee /etc/apt/sources.list.d/sublime-text.list
 #fi
 
-#if [ ! -f "/etc/apt/sources.list.d/virtualbox.list" ]; then
-wget -O- https://www.virtualbox.org/download/oracle_vbox_2016.asc  | sudo gpg --dearmor | sudo tee /usr/share/keyrings/virtualbox.gpg
-echo "deb [arch=amd64 signed-by=/usr/share/keyrings/virtualbox.gpg] https://download.virtualbox.org/virtualbox/debian jammy contrib"| \
-sudo tee /etc/apt/sources.list.d/virtualbox.list
-#fi
 
 #if [ ! -f "/etc/apt/sources.list.d/hashicorp.list" ]; then
 
@@ -54,7 +49,7 @@ echo \
 #fi 
 
 sudo apt update
-sudo apt install -y code virtualbox-7.0 vagrant sublime-text default-jdk dbeaver-ce
+sudo apt install -y code virtualbox vagrant sublime-text default-jdk dbeaver-ce
 sudo apt -y install linux-headers-generic gcc make perl wget pigz git make python3 python3-pip netcat dos2unix dkms
 sudo apt -y install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
