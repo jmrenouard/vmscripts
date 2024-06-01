@@ -96,8 +96,18 @@ init_jupyter()
 	sudo pip3 install notebook bash_kernel jupyter nbconvert
   python3 -m bash_kernel.install
 }
+install_kubernetes()
+{
+curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 \
+chmod +x minikube
+sudo mkdir -p /usr/local/bin/
+sudo install minikube /usr/local/bin/
+echo 'PATH=$PATH:/usr/local/bin' >> $HOME/.bashrc
+}
 
 [ "$1" = "" -o "$1" = "initsoft" ] && init_soft
 [ "$1" = "" -o "$1" = "initvms" ] && init_vms
 [ "$1" = "" -o "$1" = "initconf" ] && init_conf
 [ "$1" = "" -o "$1" = "initjupy" ] && init_jupyter
+
+[ "$1" = "" -o "$1" = "inithube" ] && init_kubernetes
