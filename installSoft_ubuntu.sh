@@ -90,10 +90,10 @@ init_conf()
   source $HOME/.bashrc
 }
 
-init_jupyter()
+init_python()
 {
-	sudo apt install python3-pip pandoc -y
-	sudo pip install notebook bash_kernel jupyter nbconvert
+	sudo apt install python3-pip pandoc python-is-python3 ansible -y
+	sudo pip install notebook bash_kernel jupyter nbconvert j2cli ansible
   #python3 -m bash_kernel.install
 }
 init_kubernetes()
@@ -113,6 +113,6 @@ sudo apt-get install helm
 [ "$1" = "" -o "$1" = "initsoft" ] && init_soft
 [ "$1" = "" -o "$1" = "initvms" ] && init_vms
 [ "$1" = "" -o "$1" = "initconf" ] && init_conf
-[ "$1" = "" -o "$1" = "initjupy" ] && init_jupyter
+[ "$1" = "" -o "$1" = "initpy" ] && init_python
 
 [ "$1" = "" -o "$1" = "initkube" ] && init_kubernetes
