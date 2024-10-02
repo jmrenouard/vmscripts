@@ -15,7 +15,7 @@ export all_vms="$proxy_vms,$db_vms,$app_vms"
 
 #slack vagrant linode vagrant
 [ -f "${VMS_DIR}/../vagrant.sh" ] && source ${VMS_DIR}/../vagrant.sh
-for module in is utils git network jupyter;do
+for module in is utils git network jupyter ansible ;do
     [ -f "${SCRIPT_DIR}/${module}.sh" ] && source ${SCRIPT_DIR}/${module}.sh
 done
 
