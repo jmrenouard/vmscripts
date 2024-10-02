@@ -4,7 +4,7 @@ export VMS_DIR="$HOME/GIT_REPOS/vmscripts/vms"
 export SCRIPT_DIR="$HOME/GIT_REPOS/dbscripts"
 export _DIR="$HOME/GIT_REPOS/dbscripts"
 
-[ -z "$DEFAULT_PRIVATE_KEY" ] && export DEFAULT_PRIVATE_KEY="$VMS_DIR/vms/id_rsa"
+[ -z "$DEFAULT_PRIVATE_KEY" ] && export DEFAULT_PRIVATE_KEY="$VMS_DIR/id_rsa"
 
 export proxy_vms="proxy1,proxy2"
 export db_vms="dbsrv1,dbsrv2,dbsrv3"
