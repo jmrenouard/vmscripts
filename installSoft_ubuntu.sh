@@ -49,9 +49,9 @@ echo \
 #fi 
 
 sudo apt update
-sudo apt install -y code virtualbox vagrant sublime-text default-jdk dbeaver-ce bind9-utils net-tools
+sudo apt install -y code virtualbox virtualbox-ext-pack vagrant sublime-text default-jdk dbeaver-ce bind9-utils net-tools
 sudo apt -y install linux-headers-generic gcc make perl wget pigz git make python3 python3-pip netcat dos2unix dkms
-sudo apt -y install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin docker-compose-v2
+sudo apt -y install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin docker-compose
 
 sudo systemctl enable docker
 sudo systemctl start docker
@@ -60,7 +60,7 @@ sudo usermod -aG docker $USER
 
 sudo apt upgrade -y
 
-for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt-get -y remove $pkg; done
+for pkg in docker.io docker-doc docker-compose docker-compose podman-docker containerd runc; do sudo apt-get -y remove $pkg; done
 
 df -Ph
 
