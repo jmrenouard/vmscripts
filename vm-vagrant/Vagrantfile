@@ -21,7 +21,7 @@ Vagrant.configure("2") do |config|
 
     ### CONFIG node1 VM GENERATED
     config.vm.define "node1" do |node1|
-      node1.vm.box = "generic/ubuntu2204"
+      node1.vm.box = "generic/ubuntu2210"
       node1.vm.hostname = 'node1.vm'
       node1.hostmanager.enabled = true
       node1.vm.network "private_network", type: 'static', adapter: 2, ip: "172.20.1.101", use_dhcp_assigned_default_route: true
@@ -36,10 +36,10 @@ Vagrant.configure("2") do |config|
       node1.vm.provider "virtualbox" do |vb|
          vb.name="node1"
          vb.gui = false
-         vb.memory = 1024
+         vb.memory = 2048
          vb.cpus = 2
          vb.customize [ "modifyvm", :id, "--ioapic", "on" ]
-         vb.customize [ "modifyvm", :id, "--groups", "/VagrantVms/MySQL/mysql" ]
+         vb.customize [ "modifyvm", :id, "--groups", "/VagrantVms/MongoDB/mongodb" ]
          vb.customize ["modifyvm", :id, "--nicpromisc2", "allow-all"]
          vb.customize ["modifyvm", :id, "--nicpromisc3", "allow-all"]
          vb.customize ["modifyvm", :id, "--nicpromisc4", "allow-all"]
@@ -61,11 +61,10 @@ Vagrant.configure("2") do |config|
       end
       
     end
-    
 
     ### CONFIG node2 VM GENERATED
     config.vm.define "node2" do |node2|
-      node2.vm.box = "generic/ubuntu2204"
+      node2.vm.box = "generic/ubuntu2210"
       node2.vm.hostname = 'node2.vm'
       node2.hostmanager.enabled = true
       node2.vm.network "private_network", type: 'static', adapter: 2, ip: "172.20.1.102", use_dhcp_assigned_default_route: true
@@ -80,10 +79,10 @@ Vagrant.configure("2") do |config|
       node2.vm.provider "virtualbox" do |vb|
          vb.name="node2"
          vb.gui = false
-         vb.memory = 1024
+         vb.memory = 2048
          vb.cpus = 2
          vb.customize [ "modifyvm", :id, "--ioapic", "on" ]
-         vb.customize [ "modifyvm", :id, "--groups", "/VagrantVms/MySQL/mysql" ]
+         vb.customize [ "modifyvm", :id, "--groups", "/VagrantVms/MongoDB/mongodb" ]
          vb.customize ["modifyvm", :id, "--nicpromisc2", "allow-all"]
          vb.customize ["modifyvm", :id, "--nicpromisc3", "allow-all"]
          vb.customize ["modifyvm", :id, "--nicpromisc4", "allow-all"]
@@ -109,7 +108,7 @@ Vagrant.configure("2") do |config|
 
     ### CONFIG node3 VM GENERATED
     config.vm.define "node3" do |node3|
-      node3.vm.box = "generic/ubuntu2204"
+      node3.vm.box = "generic/ubuntu2210"
       node3.vm.hostname = 'node3.vm'
       node3.hostmanager.enabled = true
       node3.vm.network "private_network", type: 'static', adapter: 2, ip: "172.20.1.103", use_dhcp_assigned_default_route: true
@@ -124,10 +123,10 @@ Vagrant.configure("2") do |config|
       node3.vm.provider "virtualbox" do |vb|
          vb.name="node3"
          vb.gui = false
-         vb.memory = 1024
+         vb.memory = 2048
          vb.cpus = 2
          vb.customize [ "modifyvm", :id, "--ioapic", "on" ]
-         vb.customize [ "modifyvm", :id, "--groups", "/VagrantVms/MySQL/mysql" ]
+         vb.customize [ "modifyvm", :id, "--groups", "/VagrantVms/MongoDB/mongodb" ]
          vb.customize ["modifyvm", :id, "--nicpromisc2", "allow-all"]
          vb.customize ["modifyvm", :id, "--nicpromisc3", "allow-all"]
          vb.customize ["modifyvm", :id, "--nicpromisc4", "allow-all"]
@@ -147,15 +146,47 @@ Vagrant.configure("2") do |config|
             chown vagrant. /home/vagrant/.ssh/id_rsa
         SHELL
       end
-      
     end
-    
 
+    ### CONFIG node4 VM GENERATED
+    config.vm.define "node4" do |node4|
+      node4.vm.box = "generic/ubuntu2210"
+      node4.vm.hostname = 'node4.vm'
+      node4.hostmanager.enabled = true
+      node4.vm.network "private_network", type: 'static', adapter: 2, ip: "172.20.1.103", use_dhcp_assigned_default_route: true
+      node4.vm.network "private_network", type: 'static', adapter: 3, ip: "172.21.1.103", use_dhcp_assigned_default_route: true
+      node4.vm.network "public_network", type: 'dhcp', adapter: 4, bridge: "Surface Ethernet Adapter", use_dhcp_assigned_default_route: true
+      node4.hostmanager.manage_host = false
+      node4.hostmanager.manage_guest = true
+      node4.hostmanager.ignore_private_ip = false
+      node4.hostmanager.include_offline = true
+      node4.hostmanager.aliases = %w(node4.localdomain node4.local node4.vm)
 
-
-
-
-
-
-
+      node4.vm.provider "virtualbox" do |vb|
+         vb.name="node4"
+         vb.gui = false
+         vb.memory = 2048
+         vb.cpus = 2
+         vb.customize [ "modifyvm", :id, "--ioapic", "on" ]
+         vb.customize [ "modifyvm", :id, "--groups", "/VagrantVms/MongoDB/mongodb" ]
+         vb.customize ["modifyvm", :id, "--nicpromisc2", "allow-all"]
+         vb.customize ["modifyvm", :id, "--nicpromisc3", "allow-all"]
+         vb.customize ["modifyvm", :id, "--nicpromisc4", "allow-all"]
+      end
+      
+      node4.vm.provision :hostmanager
+      node4.vm.provision "shell" do |s|
+        ssh_pub_key = File.readlines("./id_rsa_vm.pub").first.strip
+        ssh_priv_key = File.read("./id_rsa_vm")
+        s.inline = <<-SHELL
+            mkdir -p /root/.ssh
+            echo "#{ssh_pub_key}"  | tee -a /home/vagrant/.ssh/authorized_keys
+            echo "#{ssh_pub_key}"  | tee -a /root/.ssh/authorized_keys
+            echo "#{ssh_priv_key}" | tee /home/vagrant/.ssh/id_rsa
+            echo "#{ssh_priv_key}" | tee /root/.ssh/id_rsa
+            chmod 600 /root/.ssh/id_rsa /home/vagrant/.ssh/id_rsa
+            chown vagrant. /home/vagrant/.ssh/id_rsa
+        SHELL
+      end
+    end
 end
