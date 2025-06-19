@@ -1,6 +1,6 @@
 ### CONFIGURATED BY mygenconf.py at 2020-11-15 18:12:04.122201
 NBCPU=2
-MEM=2048
+MEM=6144
 DISKSIZE=100
 DBRIDGE="enp0s4"
 Vagrant.configure("2") do |config|
