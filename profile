@@ -6,7 +6,8 @@ export _DIR="$HOME/GIT_REPOS/dbscripts"
 
 [ -z "$DEFAULT_PRIVATE_KEY" ] && export DEFAULT_PRIVATE_KEY="$VMS_DIR/id_rsa"
 
-export proxy_vms="proxy1,proxy2"
+#export proxy_vms="proxy1,proxy2"
+export proxy_vms="proxy1"
 export db_vms="dbsrv1,dbsrv2,dbsrv3"
 export app_vms="app1"
 export docker_vms="docker0,docker1,docker2"
