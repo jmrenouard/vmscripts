@@ -48,7 +48,9 @@ Vagrant.configure("2") do |config|
          vb.gui = false
          vb.memory = MEM
          vb.cpus = NBCPU
-         vb.nestedpaging = "off"
+        # --- LIGNE AJOUTÉE ---
+         # Désactive le "Nested Paging" pour améliorer la compatibilité ou résoudre des problèmes d'instabilité.
+         vb.customize ["modifyvm", :id, "--nestedpaging", "off"]
       end
       app1.vm.provision "shell", path: "provision_generic.sh"
       app1.vm.provision :hostmanager
