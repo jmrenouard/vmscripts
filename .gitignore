@@ -5,3 +5,4 @@ docker/secrets/**
 test_db
 test_db/**
 vms/minikube
+vms/id_rsa
