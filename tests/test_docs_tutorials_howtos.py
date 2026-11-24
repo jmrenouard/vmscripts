@@ -307,6 +307,7 @@ class TestDocsTargetsAndDiataxis(unittest.TestCase):
             "docker/Dockerfile",
             "docker/galera/docker-compose.yaml",
             "docker/replication/docker-compose.yml",
+            "linode/mygenconf.py",
             "linode/mygenscript.py",
             "lxd/docker_iptables.sh",
         )
@@ -320,7 +321,7 @@ class TestDocsTargetsAndDiataxis(unittest.TestCase):
         missing_targets: list[str] = []
         for md_file in _iter_repo_markdown():
             text = md_file.read_text(encoding="utf-8")
-            for m in re.finditer(r"\bmake\s+([A-Za-z0-9_-]+)\b", text):
+            for m in re.finditer(r"\bmake\s+(?:-C\s+\S+\s+)?([A-Za-z0-9_.-]+)\b", text):
                 target = m.group(1)
                 if target not in all_targets:
                     missing_targets.append(f"{md_file.relative_to(REPO_ROOT)}: make {target}")

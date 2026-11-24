@@ -23,10 +23,10 @@ cd vm-vagrant
 make generate_keys
 ```
 
-2. Copy the new private key if you use `vms/` (`vms/id_rsa`) and restrict permissions:
+2. Copy the new private key to `vms/id_rsa` and restrict file permissions:
 
 ```bash
-chmod 600 id_rsa_vm
+cp id_rsa_vm ../vms/id_rsa && chmod 600 id_rsa_vm ../vms/id_rsa
 ```
 
 ### Generate Configuration Artifacts

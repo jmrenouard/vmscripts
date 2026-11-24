@@ -9,7 +9,7 @@ Operational cheat sheet showing how `profile` and `vagrant.sh` combine with an e
 ```bash
 git pull
 chmod 600 vms/id_rsa
-source ./vagrant.sh
+source ./profile
 vssh_cmd "$all_vms" "ip a"
 vlist
 ```
